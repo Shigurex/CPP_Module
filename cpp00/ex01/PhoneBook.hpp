@@ -10,5 +10,6 @@ private:
 public:
 	PhoneBook();
 	~PhoneBook();
-	void	PhoneBook::InputString(void);
+	void	InputString(void);
+	void	SearchString(void);
 };

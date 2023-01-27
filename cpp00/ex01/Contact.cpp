@@ -10,13 +10,11 @@ Contact::~Contact(void)
 	;
 }
 
-
-
-void	Contact::SetValue(std::string FirstName, std::string LastName, std::string Nickname, std::string PhoneNumber, std::string DarkestSecret)
+void	Contact::SetValue(std::string first_name, std::string last_name, std::string nick_name, std::string phone_number, std::string darkest_secret)
 {
-	this->FirstName = FirstName;
-	this->LastName = LastName;
-	this->Nickname = Nickname;
-	this->PhoneNumber = PhoneNumber;
-	this->DarkestSecret = DarkestSecret;
+	this->first_name = first_name;
+	this->last_name = last_name;
+	this->nick_name = nick_name;
+	this->phone_number = phone_number;
+	this->darkest_secret = darkest_secret;
 }
