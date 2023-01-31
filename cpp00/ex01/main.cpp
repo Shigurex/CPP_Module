@@ -8,9 +8,9 @@ int	main(void)
 	while (true)
 	{
 		std::cout << "Input command (ADD, SEARCH, EXIT): ";
-		std::getline(std::cin, command);
+		std::cin >> command;
 		if (std::cin.eof() == true) {
-			std::cerr << GETLINE_ERROR_MESSAGE << std::endl;
+			std::cerr << CIN_ERROR_MESSAGE << std::endl;
 			exit(EXIT_FAILURE);
 		}
 		if (!command.compare("ADD"))

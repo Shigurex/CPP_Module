@@ -16,7 +16,7 @@
 # define DARKEST_SECRET_MESSAGE "Input your darkest secret: "
 
 # define EXIT_MESSAGE "Exit process"
-# define GETLINE_ERROR_MESSAGE "Failed in getline"
+# define CIN_ERROR_MESSAGE "Failed in cin"
 
 typedef enum
 {
@@ -33,14 +33,15 @@ private:
 	int		_index;
 	bool	_is_full;
 	Contact	_contacts[MAX_CONTACT];
+
+	std::string	InputString(std::string message);
+	void		SetString(e_info info, std::string message);
+	void		OutputStr(std::string str, std::string delimiter, size_t max_len);
+	void		OutputExactInfo(int contact_num);
+	void		OutputPreciseInfo(int contact_num);
 public:
 	PhoneBook();
 	~PhoneBook();
-	std::string	InputString(std::string message);
-	void		SetString(e_info info, std::string message);
-	void		OutputStr(std::string str, std::string delimiter, int max_len);
-	void		OutputExactInfo(int contact_num);
-	void		OutputPreciseInfo(int contact_num);
 	void		Add(void);
 	void		Search(void);
 	void		Exit(void);

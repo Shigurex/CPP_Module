@@ -16,10 +16,14 @@ std::string	PhoneBook::InputString(std::string message)
 	std::string	str;
 
 	std::cout << message;
-	std::getline(std::cin, str);
-	if (std::cin.eof() == true) {
-		std::cerr << GETLINE_ERROR_MESSAGE << std::endl;
-		exit(EXIT_FAILURE);
+	while (true) {
+		std::cin >> str;
+		if (std::cin.eof() == true) {
+			std::cerr << CIN_ERROR_MESSAGE << std::endl;
+			exit(EXIT_FAILURE);
+		}
+		if (std::string(str).find('\n') == std::string::npos)
+			break ;
 	}
 	return (str);
 }
@@ -41,7 +45,7 @@ void	PhoneBook::SetString(e_info info, std::string message)
 		this->_contacts[this->_index].SetDarkestSecret(str);
 }
 
-void	PhoneBook::OutputStr(std::string str, std::string delimiter, int max_len)
+void	PhoneBook::OutputStr(std::string str, std::string delimiter, size_t max_len)
 {
 	if (max_len < 1)
 		return ;
@@ -70,11 +74,12 @@ void	PhoneBook::OutputPreciseInfo(int contact_num)
 	std::cout << "Input index: ";
 	std::cin >> index;
 	if (std::cin.eof() == true) {
-		std::cerr << GETLINE_ERROR_MESSAGE << std::endl;
+		std::cerr << CIN_ERROR_MESSAGE << std::endl;
 		exit(EXIT_FAILURE);
 	}
-	if (index <= 0 || contact_num < index)
+	if (index <= 0 || contact_num < index) {
 		return ;
+	}
 	std::cout << "First name: " << this->_contacts[index - 1].GetFirstName() << std::endl;
 	std::cout << "Last name: " << this->_contacts[index - 1].GetLastName() << std::endl;
 	std::cout << "Nick name: " << this->_contacts[index - 1].GetNickName() << std::endl;

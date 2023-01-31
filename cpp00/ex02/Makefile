@@ -1,7 +1,8 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = megaphone
-SRCS = megaphone.cpp
+NAME = contact
+SRCS = tests.cpp \
+	Account.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
