@@ -15,15 +15,16 @@ std::string	PhoneBook::InputString(std::string message)
 {
 	std::string	str;
 
-	std::cout << message;
 	while (true) {
-		std::cin >> str;
+		std::cout << message;
+		std::getline(std::cin, str);
 		if (std::cin.eof() == true) {
-			std::cerr << CIN_ERROR_MESSAGE << std::endl;
+			std::cerr << GETLINE_ERROR_MESSAGE << std::endl;
 			exit(EXIT_FAILURE);
 		}
-		if (std::string(str).find('\n') == std::string::npos)
-			break ;
+		else if (str.empty())
+			continue ;
+		break ;
 	}
 	return (str);
 }
@@ -69,15 +70,15 @@ void	PhoneBook::OutputExactInfo(int contact_num)
 
 void	PhoneBook::OutputPreciseInfo(int contact_num)
 {
-	int	index;
+	std::string	str;
+	const char	*tmp;
+	int			index;
 
-	std::cout << "Input index: ";
-	std::cin >> index;
-	if (std::cin.eof() == true) {
-		std::cerr << CIN_ERROR_MESSAGE << std::endl;
-		exit(EXIT_FAILURE);
-	}
+	str = InputString(INDEX_MESSAGE);
+	tmp = str.c_str();
+	index = std::atoi(tmp);
 	if (index <= 0 || contact_num < index) {
+		std::cerr << INDEX_ERROR_MESSAGE << std::endl;
 		return ;
 	}
 	std::cout << "First name: " << this->_contacts[index - 1].GetFirstName() << std::endl;

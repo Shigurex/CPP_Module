@@ -14,9 +14,11 @@
 # define NICK_NAME_MESSAGE "Input your nick name: "
 # define PHONE_NUMBER_MESSAGE "Input your phone number: "
 # define DARKEST_SECRET_MESSAGE "Input your darkest secret: "
+# define INDEX_MESSAGE "Input index: "
 
 # define EXIT_MESSAGE "Exit process"
-# define CIN_ERROR_MESSAGE "Failed in cin"
+# define GETLINE_ERROR_MESSAGE "Failed in getline"
+# define INDEX_ERROR_MESSAGE "Invalid index"
 
 typedef enum
 {
