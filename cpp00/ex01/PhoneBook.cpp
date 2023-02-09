@@ -18,7 +18,9 @@ std::string	PhoneBook::InputString(std::string message)
 	while (true) {
 		std::cout << message;
 		std::getline(std::cin, str);
-		if (std::cin.eof() == true) {
+		if (std::cin.eof())
+			exit(EXIT_SUCCESS);
+		else if (std::cin.fail()) {
 			std::cerr << GETLINE_ERROR_MESSAGE << std::endl;
 			exit(EXIT_FAILURE);
 		}

@@ -9,7 +9,9 @@ int	main(void)
 	{
 		std::cout << "Input command (ADD, SEARCH, EXIT): ";
 		std::getline(std::cin, command);
-		if (std::cin.eof() == true) {
+		if (std::cin.eof())
+			break ;
+		else if (std::cin.fail()) {
 			std::cerr << GETLINE_ERROR_MESSAGE << std::endl;
 			exit(EXIT_FAILURE);
 		}
@@ -20,4 +22,5 @@ int	main(void)
 		else if (!command.compare("EXIT"))
 			phone_book.Exit();
 	}
+	return (0);
 }
