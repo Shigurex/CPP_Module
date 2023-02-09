@@ -10,7 +10,7 @@ private:
 public:
 	Weapon();
 	~Weapon();
-	const std::string	getType(const )
+	std::string	getType() const;
 };
 
 #endif
