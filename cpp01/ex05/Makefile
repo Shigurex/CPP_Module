@@ -1,7 +1,9 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = replace
-SRCS = main.cpp
+NAME = harl
+SRCS = main.cpp \
+	Harl.cpp
+
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
