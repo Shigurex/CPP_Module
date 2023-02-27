@@ -10,7 +10,7 @@ ClapTrap::ClapTrap(const std::string name) : name(name), hit_points(10), energy_
 	;
 }
 
-ClapTrap::ClapTrap(ClapTrap& obj)
+ClapTrap::ClapTrap(const ClapTrap& obj)
 {
 	*this = obj;
 }
