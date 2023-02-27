@@ -4,9 +4,9 @@ DiamondTrap::DiamondTrap() : ClapTrap("no_name_clap_name")
 {
 	std::cout << "DiamondTrap default constructor called!" << std::endl;
 	this->name = "no_name";
-	this->hit_points = this->FragTrap::hit_points;
-	this->energy_points = this->ScavTrap::energy_points;
-	this->attack_damage = this->FragTrap::attack_damage;
+	this->hit_points = this->fragtrap_init_hit_points;
+	this->energy_points = this->scavtrap_init_energy_points;
+	this->attack_damage = this->fragtrap_init_attack_damage;
 }
 
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name)
