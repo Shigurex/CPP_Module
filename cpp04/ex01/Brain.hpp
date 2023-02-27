@@ -3,13 +3,17 @@
 
 # include	<string>
 
+# define SIZE 100
+
 class Brain
 {
 private:
-	std::string	ideas[100];
+	std::string	ideas[SIZE];
 public:
 	Brain();
+	Brain(const Brain& obj);
 	~Brain();
+	Brain&	operator=(const Brain& rhs);
 };
 
 #endif

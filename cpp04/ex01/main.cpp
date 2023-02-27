@@ -4,6 +4,8 @@
 #include	"WrongAnimal.hpp"
 #include	"WrongCat.hpp"
 
+#define ARRAY_SIZE 10
+
 int	main()
 {
 	const Animal* j = new Dog();
@@ -11,11 +13,12 @@ int	main()
 	delete j;//should not create a leak
 	delete i;
 
-	const Animal	*animals[100];
-	for (size_t k = 0; k < 50; k++)
+	const Animal	*animals[ARRAY_SIZE];
+	for (size_t k = 0; k < ARRAY_SIZE / 2; k++)
 		animals[k] = new Dog();
-	for (size_t k = 50; k < 100; k++)
+	for (size_t k = ARRAY_SIZE / 2; k < ARRAY_SIZE; k++)
 		animals[k] = new Cat();
-	
+	for (size_t k = 0; k < ARRAY_SIZE; k++)
+		delete animals[k];
 	return (0);
 }
