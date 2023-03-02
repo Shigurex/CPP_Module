@@ -12,14 +12,9 @@ int	main()
 	const Animal* i = new Cat();
 	delete j;//should not create a leak
 	delete i;
-
-	Animal	*animals[ARRAY_SIZE];
-	for (size_t k = 0; k < ARRAY_SIZE / 2; k++)
-		animals[k] = new Dog();
-	for (size_t k = ARRAY_SIZE / 2; k < ARRAY_SIZE; k++)
-		animals[k] = new Cat();
-	for (size_t k = 0; k < ARRAY_SIZE; k++)
-		delete animals[k];
+	// const Animal* k = new Animal();
+	// delete k;
+	//this action is invalid
 	system("leaks animal");
 	return (0);
 }
