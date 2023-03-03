@@ -15,7 +15,7 @@ public:
 	Brain();
 	Brain(const Brain& obj);
 	~Brain();
-	Brain&		operator=(const Brain& rhs);
+	Brain&	operator=(const Brain& rhs);
 };
 
 #endif

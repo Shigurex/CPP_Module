@@ -1,13 +1,12 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = animal
-SRCS = main.cpp \
-	Animal.cpp \
-	Cat.cpp \
-	Dog.cpp \
-	WrongAnimal.cpp \
-	WrongCat.cpp \
-	Brain.cpp
+NAME = materia
+SRCS = AMateria.cpp \
+	Character.cpp \
+	Cure.cpp \
+	Ice.cpp \
+	MateriaSource.cpp \
+	main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

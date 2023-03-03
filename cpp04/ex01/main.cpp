@@ -20,6 +20,5 @@ int	main()
 		animals[k] = new Cat();
 	for (size_t k = 0; k < ARRAY_SIZE; k++)
 		delete animals[k];
-	system("leaks animal");
 	return (0);
 }

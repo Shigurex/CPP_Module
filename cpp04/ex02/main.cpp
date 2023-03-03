@@ -15,6 +15,5 @@ int	main()
 	// const Animal* k = new Animal();
 	// delete k;
 	//this action is invalid
-	system("leaks animal");
 	return (0);
 }

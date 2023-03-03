@@ -1,20 +1,34 @@
-#include	"Animal.hpp"
-#include	"Cat.hpp"
-#include	"Dog.hpp"
-#include	"WrongAnimal.hpp"
-#include	"WrongCat.hpp"
-
-#define ARRAY_SIZE 10
+#include	"Character.hpp"
+#include	"Ice.hpp"
+#include	"Cure.hpp"
+#include	"MateriaSource.hpp"
 
 int	main()
 {
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	delete j;//should not create a leak
-	delete i;
-	// const Animal* k = new Animal();
-	// delete k;
-	//this action is invalid
-	system("leaks animal");
-	return (0);
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	ICharacter* me = new Character("me");
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+	ICharacter* bob = new Character("bob");
+	me->use(0, *bob);
+	me->use(1, *bob);
+
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	src->learnMateria(new Cure());
+	me->unequip(1);
+	me->unequip(2);
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	me->use(0, *bob);
+	me->use(1, *bob);
+	delete bob;
+	delete me;
+	delete src;
+	return 0;
 }
