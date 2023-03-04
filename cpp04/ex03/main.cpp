@@ -20,15 +20,23 @@ int	main()
 
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
-	src->learnMateria(new Cure());
-	me->unequip(1);
-	me->unequip(2);
+	AMateria*	cure = new Cure();
+	src->learnMateria(cure);
+	delete cure;
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
-	me->use(0, *bob);
-	me->use(1, *bob);
+	me->use(2, *bob);
+	AMateria	*unequip_materia;
+	unequip_materia = src->createMateria("cure");
+	me->equip(unequip_materia);
+	me->use(3, *bob);
+	me->unequip(3);
+	me->use(3, *bob);
+
+	delete unequip_materia;
 	delete bob;
 	delete me;
 	delete src;
+
 	return 0;
 }

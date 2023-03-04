@@ -3,24 +3,26 @@
 Character::Character() : name("no_name")
 {
 	for (size_t i = 0; i < SIZE; i++)
-		materias[i] = NULL;
+		this->materias[i] = NULL;
 }
 
 Character::Character(const std::string& name) : name(name)
 {
 	for (size_t i = 0; i < SIZE; i++)
-		materias[i] = NULL;
+		this->materias[i] = NULL;
 }
 
 Character::Character(const Character& obj)
 {
+	for (size_t i = 0; i < SIZE; i++)
+		this->materias[i] = NULL;
 	*this = obj;
 }
 
 Character::~Character()
 {
 	for (size_t i = 0; i < SIZE; i++)
-		delete materias[i];
+		delete this->materias[i];
 }
 
 Character&	Character::operator=(const Character& rhs)
@@ -55,6 +57,7 @@ void	Character::equip(AMateria* m)
 	}
 	this->materias[index] = m;
 }
+
 void	Character::unequip(int idx)
 {
 	if (idx < 0 || SIZE <= idx) {

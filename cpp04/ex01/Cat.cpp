@@ -10,6 +10,7 @@ Cat::Cat()
 Cat::Cat(const Cat& obj)
 {
 	std::cout << "Cat copy constructor called!" << std::endl;
+	this->brain = NULL;
 	*this = obj;
 }
 
@@ -24,6 +25,8 @@ Cat&	Cat::operator=(const Cat& rhs)
 	std::cout << "Cat copy assignment operator called!" << std::endl;
 	if (this == &rhs)
 		return (*this);
+	if (this->brain)
+		delete this->brain;
 	this->type = rhs.type;
 	this->brain = new Brain(*rhs.brain);
 	return (*this);

@@ -3,11 +3,13 @@
 MateriaSource::MateriaSource()
 {
 	for (size_t i = 0; i < SIZE; i++)
-		materias[i] = NULL;
+		this->materias[i] = NULL;
 }
 
 MateriaSource::MateriaSource(const MateriaSource& obj)
 {
+	for (size_t i = 0; i < SIZE; i++)
+		this->materias[i] = NULL;
 	*this = obj;
 }
 
@@ -36,7 +38,7 @@ void	MateriaSource::learnMateria(AMateria* m)
 {
 	size_t	index;
 
-	for (index = 0; this->materias[index]; index++);
+	for (index = 0; index < SIZE && this->materias[index]; index++);
 	if (index == SIZE) {
 		std::cerr << "all slots used" << std::endl;
 		return ;
