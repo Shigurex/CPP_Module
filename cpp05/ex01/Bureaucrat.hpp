@@ -3,6 +3,9 @@
 
 # include	<iostream>
 # include	<fstream>
+# include	"Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
@@ -15,7 +18,7 @@ public:
 	public:
 		virtual const char	*what() const throw()
 		{
-			return ("Bureaucrat: grade too high");
+			return ("grade too high");
 		}
 	};
 	class GradeTooLowException : public std::exception
@@ -23,7 +26,7 @@ public:
 	public:
 		virtual const char	*what() const throw()
 		{
-			return ("Bureaucrat: grade too low");
+			return ("grade too low");
 		}
 	};
 
@@ -36,6 +39,7 @@ public:
 	int					getGrade() const;
 	void				incrementGrade(void);
 	void				decrementGrade(void);
+	void				signForm(Form& form);
 
 	static const int	highest_grade = 1;
 	static const int	lowest_grade = 150;
