@@ -26,5 +26,6 @@ int	main(void)
 	delete Form_ShrubberyCreation;
 	delete Form_RobotomyRequest;
 	delete Form_PresidentialPardon;
+
 	return (0);
 }

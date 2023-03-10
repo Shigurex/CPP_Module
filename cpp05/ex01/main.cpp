@@ -5,6 +5,7 @@ int	main(void)
 {
 	Form	form("form", 100, 60);
 
+	std::cout << form << std::endl;
 	try
 	{
 		Form	form_low("form low", 160, 10);
