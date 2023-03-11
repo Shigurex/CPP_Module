@@ -1,7 +1,9 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = conversion
-SRCS = Conversion.cpp \
+SRCS = Base.cpp \
+	generate.cpp \
+	identify.cpp \
 	main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
