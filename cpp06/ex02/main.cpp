@@ -27,5 +27,9 @@ int	main(void)
 		identify(random3);
 		identify(*random3);
 	}
+
+	delete random1;
+	delete random2;
+	delete random3;
 	return (0);
 }

@@ -1,6 +1,6 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = conversion
+NAME = identify
 SRCS = Base.cpp \
 	generate.cpp \
 	identify.cpp \
