@@ -4,8 +4,8 @@
 #include	<cstdlib>
 #include	<iostream>
 
-template<typename Type>
-void	iter(Type array[], std::size_t len, void (*f)(Type &t))
+template<typename T>
+void	iter(T array[], std::size_t len, void (*f)(T &t))
 {
 	if (!array || !f)
 		return ;
