@@ -1,6 +1,6 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = array
+NAME = swap
 SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
