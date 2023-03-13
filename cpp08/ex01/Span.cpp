@@ -69,7 +69,7 @@ unsigned int	Span::longestSpan(void) const
 	return (longest_span);
 }
 
-void	Span::addRange(std::vector<int> vector)
+void	Span::addAtOnce(std::vector<int> vector)
 {
 	std::vector<int>::iterator	it_begin = vector.begin();
 	std::vector<int>::iterator	it_end = vector.end();
