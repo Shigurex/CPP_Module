@@ -20,7 +20,7 @@ public:
 	void			addNumber(int n);
 	unsigned int	shortestSpan(void) const;
 	unsigned int	longestSpan(void) const;
-	void			addRange(std::vector<int>::iterator it_begin, std::vector<int>::iterator it_end);
+	void			addRange(std::vector<int> vector);
 
 	class IndexOutOfRangeException : public std::exception
 	{

@@ -69,10 +69,16 @@ unsigned int	Span::longestSpan(void) const
 	return (longest_span);
 }
 
-void	Span::addRange(std::vector<int>::iterator it_begin, std::vector<int>::iterator it_end)
+void	Span::addRange(std::vector<int> vector)
 {
-	for (std::vector<int>::iterator it = it_begin; it != it_end; it++)
-		this->addNumber(*it);
+	std::vector<int>::iterator	it_begin = vector.begin();
+	std::vector<int>::iterator	it_end = vector.begin();
+
+	for (std::vector<int>::iterator it = it_begin; it != it_end; it++) {
+		if (this->vector.size() == this->size)
+			throw Span::IndexOutOfRangeException();
+		this->vector.push_back(*it);
+	}
 }
 
 const char	*Span::IndexOutOfRangeException::what() const throw()

@@ -26,8 +26,17 @@ public:
 		return (*this);
 	};
 
-	typename std::stack<T>::iterator stack_iterator;
+	typedef typename std::stack<T>::container_type::iterator iterator;
 
+	iterator	begin(void)
+	{
+		return (std::stack<T>::c.begin());
+	};
+
+	iterator	end(void)
+	{
+		return (std::stack<T>::c.end());
+	};
 };
 
 #endif
