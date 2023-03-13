@@ -42,8 +42,8 @@ int	main()
 	{
 		std::generate(vec_random.begin(), vec_random.end(), std::rand);
 		sp_random.addRange(vec_random);
-		std::cout << "shortest span (sp_small): " << sp_random.shortestSpan() << std::endl;
-		std::cout << "shortest span (sp_small): " << sp_random.longestSpan() << std::endl;
+		std::cout << "shortest span (sp_random): " << sp_random.shortestSpan() << std::endl;
+		std::cout << "shortest span (sp_random): " << sp_random.longestSpan() << std::endl;
 	}
 	catch(const std::exception& e)
 	{

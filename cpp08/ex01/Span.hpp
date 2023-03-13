@@ -30,6 +30,11 @@ public:
 	{
 		virtual const char	*what() const throw();
 	};
+
+	class SizeTooBigException : public std::exception
+	{
+		virtual const char	*what() const throw();
+	};
 };
 
 #endif
