@@ -69,11 +69,13 @@ unsigned int	Span::longestSpan(void) const
 	return (longest_span);
 }
 
-void	Span::addRange(std::vector<int> vector)
+void	Span::addAtOnce(std::vector<int> vector)
 {
 	std::vector<int>::iterator	it_begin = vector.begin();
-	std::vector<int>::iterator	it_end = vector.begin();
+	std::vector<int>::iterator	it_end = vector.end();
 
+	if (this->vector.size() + vector.size() > this->size)
+		throw Span::SizeTooBigException();
 	for (std::vector<int>::iterator it = it_begin; it != it_end; it++) {
 		if (this->vector.size() == this->size)
 			throw Span::IndexOutOfRangeException();
@@ -89,4 +91,9 @@ const char	*Span::IndexOutOfRangeException::what() const throw()
 const char	*Span::NoSpanException::what() const throw()
 {
 	return ("no span found");
+}
+
+const char	*Span::SizeTooBigException::what() const throw()
+{
+	return ("input size too big");
 }

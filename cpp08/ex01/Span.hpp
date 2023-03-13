@@ -20,13 +20,17 @@ public:
 	void			addNumber(int n);
 	unsigned int	shortestSpan(void) const;
 	unsigned int	longestSpan(void) const;
-	void			addRange(std::vector<int> vector);
+	void			addAtOnce(std::vector<int> vector);
 
 	class IndexOutOfRangeException : public std::exception
 	{
 		virtual const char	*what() const throw();
 	};
 	class NoSpanException : public std::exception
+	{
+		virtual const char	*what() const throw();
+	};
+	class SizeTooBigException : public std::exception
 	{
 		virtual const char	*what() const throw();
 	};
