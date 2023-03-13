@@ -1,49 +1,86 @@
 #include	"Span.hpp"
 
-Span::Span() : n(0), array(new int[0])
+Span::Span() : size(0)
 {
 	;
 }
 
-Span::Span(unsigned int n) : n(n), array(new int[n])
+Span::Span(unsigned int n) : size(n)
 {
 	;
 }
 
 Span::Span(const Span& obj)
 {
-	array = NULL;
 	*this = obj;
 }
 
 Span::~Span()
 {
-	delete [] this->array;
+	;
 }
-
 
 Span&	Span::operator=(const Span& rhs)
 {
 	if (this == &rhs)
 		return (*this);
-	this->n = rhs.n;
-	if (this->array)
-		delete [] this->array;
-	this->array = new int[this->n];
-	for (unsigned int i = 0; i < this->n; i++)
-		this->array[i] = rhs.array[i];
+	this->size = rhs.size;
+	this->vector = rhs.vector;
 	return (*this);
 }
 
 void	Span::addNumber(int n)
 {
-	;
+	if (this->vector.size() == this->size)
+		throw Span::IndexOutOfRangeException();
+	this->vector.push_back(n);
 }
 
-	unsigned int	shortestSpan(void);
-	unsigned int	longestSpan(void);
+unsigned int	Span::shortestSpan(void) const
+{
+	std::vector<int>			tmp = this->vector;
+	std::vector<int>::iterator	tmp_iter = tmp.begin();
+	std::vector<int>::iterator	tmp_end_iter = tmp.end();
+	unsigned int				shortest_span = std::numeric_limits<unsigned int>::max();
+	unsigned int				span;
+
+	if (tmp.size() < 2)
+		throw NoSpanException();
+	std::sort(tmp_iter, tmp_end_iter);
+	for (; tmp_iter + 1 != tmp_end_iter; tmp_iter++) {
+		span = *(tmp_iter + 1) - *tmp_iter;
+		if (span <= shortest_span)
+			shortest_span = span;
+	}
+	return (shortest_span);
+}
+
+unsigned int	Span::longestSpan(void) const
+{
+	std::vector<int>			tmp = this->vector;
+	std::vector<int>::iterator	tmp_first_iter = tmp.begin();
+	std::vector<int>::iterator	tmp_end_iter = tmp.end();
+	unsigned int				longest_span;
+
+	if (tmp.size() < 2)
+		throw NoSpanException();
+	std::sort(tmp_first_iter, tmp_end_iter);
+	longest_span = *(tmp_end_iter - 1) - *tmp_first_iter;
+	return (longest_span);
+}
+
+void	Span::addRange(std::vector<int>::iterator it_begin, std::vector<int>::iterator it_end)
+{
+	for (std::vector<int>::iterator it = it_begin; it != it_end; it++)
+		this->addNumber(*it);
+}
 
 const char	*Span::IndexOutOfRangeException::what() const throw()
 {
 	return ("index out of range");
+}
+
+const char	*Span::NoSpanException::what() const throw()
+{
+	return ("no span found");
 }
