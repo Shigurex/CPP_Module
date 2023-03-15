@@ -23,27 +23,12 @@ RPN::~RPN()
 RPN&	RPN::operator=(const RPN& rhs)
 {
 	this->raw_string = rhs.raw_string;
-	this->valid_value_vector = rhs.valid_value_vector;
 	return (*this);
 }
 
 bool	RPN::isOperator(char c)
 {
 	return (c == '+' || c == '-' || c == '*' || c == '/');
-}
-
-void	RPN::parse(void)
-{
-	size_t	size = this->raw_string.size();
-
-	for (size_t i = 0; i < size; i++) {
-		if (std::isdigit(this->raw_string[i]) || this->isOperator(this->raw_string[i]))
-			this->valid_value_vector.push_back(this->raw_string[i]);
-		else if (this->raw_string[i] == ' ')
-			continue ;
-		else
-			throw InvalidSyntaxException();
-	}
 }
 
 int	RPN::execOperator(int value_from, int value_to, char c_operator)
@@ -89,25 +74,26 @@ int	RPN::execOperator(int value_from, int value_to, char c_operator)
 int	RPN::calculate(void)
 {
 	std::stack<int>				stack;
-	std::vector<char>::iterator	vector_iter_begin = this->valid_value_vector.begin();
-	std::vector<char>::iterator	vector_iter_end = this->valid_value_vector.end();
 	int							value_from;
 	int							value_to;
 	int							value;
+	size_t						size = this->raw_string.size();
 
-	for (std::vector<char>::iterator vector_iter = vector_iter_begin; vector_iter != vector_iter_end; vector_iter++) {
-		if (std::isdigit(*vector_iter))
-			stack.push(*vector_iter - '0');
-		else if (this->isOperator(*vector_iter)) {
+	for (size_t i = 0; i < size; i++) {
+		if (std::isdigit(this->raw_string[i]))
+			stack.push(this->raw_string[i] - '0');
+		else if (this->isOperator(this->raw_string[i])) {
 			if (stack.size() < 2)
 				throw InvalidSyntaxException();
 			value_to = stack.top();
 			stack.pop();
 			value_from = stack.top();
 			stack.pop();
-			value = execOperator(value_from, value_to, *vector_iter);
+			value = execOperator(value_from, value_to, this->raw_string[i]);
 			stack.push(value);
-		} else
+		} else if (this->raw_string[i] == ' ')
+			continue ;
+		else
 			throw InvalidSyntaxException();
 	}
 	if (stack.size() != 1)

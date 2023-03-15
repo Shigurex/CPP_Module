@@ -2,7 +2,6 @@
 # define RPN_HPP
 
 # include	<stack>
-# include	<vector>
 # include	<iostream>
 # include	<limits>
 
@@ -12,7 +11,6 @@ class RPN
 {
 private:
 	std::string			raw_string;
-	std::vector<char>	valid_value_vector;
 
 	bool	isOperator(char c);
 	int		execOperator(int value_from, int value_to, char c_operator);
@@ -22,7 +20,6 @@ public:
 	RPN(const RPN& obj);
 	~RPN();
 	RPN&	operator=(const RPN& rhs);
-	void	parse(void);
 	int		calculate(void);
 
 	class InvalidSyntaxException : public std::exception

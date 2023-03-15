@@ -15,7 +15,6 @@ int	main(int argc, char **argv)
 	{
 		std::string	raw_string(argv[1]);
 		RPN	rpn(raw_string);
-		rpn.parse();
 		std::cout << rpn.calculate() << std::endl;
 	}
 	catch(const std::exception& e)
