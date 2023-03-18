@@ -5,6 +5,7 @@
 # include	<vector>
 # include	<iostream>
 # include	<climits>
+# include	<ctime>
 
 class PmergeMe
 {
@@ -21,8 +22,8 @@ public:
 	void		sortMergeVector(size_t left, size_t mid, size_t right);
 	void		sortInsertVector(size_t left, size_t right);
 	void		sortList(size_t left, size_t right);
-	void		sortMergeList(size_t left, size_t mid, size_t right);
-	void		sortInsertList(std::list<int>::iterator iter_left, std::list<int>::iterator iter_right);
+	void		sortMergeList(std::list<int>::iterator& iter_left, std::list<int>::iterator& iter_mid, std::list<int>::iterator& iter_right);
+	void		sortInsertList(std::list<int>::iterator& iter_left, std::list<int>::iterator& iter_right);
 	std::string	getVectorStr(std::vector<int> vector);
 	void		sort(void);
 

@@ -98,7 +98,7 @@ std::string	PmergeMe::getVectorStr(std::vector<int> vector)
 	return (str);
 }
 
-void	PmergeMe::sortInsertList(std::list<int>::iterator iter_left, std::list<int>::iterator iter_right)
+void	PmergeMe::sortInsertList(std::list<int>::iterator& iter_left, std::list<int>::iterator& iter_right)
 {
 	std::list<int>::iterator	iter, iter_next;
 	std::list<int>::iterator	iter_tmp, iter_next_tmp;
@@ -110,54 +110,47 @@ void	PmergeMe::sortInsertList(std::list<int>::iterator iter_left, std::list<int>
 	for (; iter_next != iter_right; iter++, iter_next++) {
 		tmp = *iter_next;
 		for (iter_next_tmp = iter_next, iter_tmp = iter; iter_next_tmp != iter_left && *iter_tmp > tmp; iter_tmp--, iter_next_tmp--)
-			*iter_next_tmp = *iter_next;
+			*iter_next_tmp = *iter_tmp;
 		*iter_next_tmp = tmp;
 	}
 }
 
-//void	PmergeMe::sortMergeList(size_t left, size_t mid, size_t right)
-//{
-//	std::list<int>::iterator	iter_left = list.begin();
-//	std::list<int>::iterator	iter_mid = list.begin();
-//	std::list<int>::iterator	iter_right = list.begin();
-//	std::advance(iter_left, left);
-//	std::advance(iter_mid, mid);
-//	std::advance(iter_right, right);
+void	PmergeMe::sortMergeList(std::list<int>::iterator& iter_left, std::list<int>::iterator& iter_mid, std::list<int>::iterator& iter_right)
+{
+	std::list<int>				list_left(iter_left, iter_mid);
+	std::list<int>				list_right(iter_mid, iter_right);
+	std::list<int>::iterator	iter_list_left = list_left.begin();
+	std::list<int>::iterator	iter_list_right = list_right.begin();
+	std::list<int>::iterator	iter;
 
-//	std::list<int>				list_left(iter_left, iter_mid);
-//	std::list<int>				list_right(iter_mid, iter_right);
-//	std::list<int>::iterator	iter_list_left = list_left.begin();
-//	std::list<int>::iterator	iter_list_right = list_right.begin();
-//	std::list<int>::iterator	iter;
+	size_t	left_index = 0, right_index = 0;
+	size_t	list_left_size = list_left.size();
+	size_t	list_right_size = list_right.size();
 
-//	size_t	left_index = 0, right_index = 0;
-//	size_t	list_left_size = list_left.size();
-//	size_t	list_right_size = list_right.size();
-
-//	for (iter = iter_left; iter != iter_right; iter++) {
-//		if (left_index == list_left_size) {
-//			*iter = *iter_list_right++;
-//			right_index++;
-//		} else if (right_index == list_right_size) {
-//			*iter = *iter_list_left++;
-//			left_index++;
-//		} else if (*iter_list_left < *iter_list_right) {
-//			*iter = *iter_list_left++;
-//			left_index++;
-//		} else {
-//			*iter = *iter_list_right++;
-//			right_index++;
-//		}
-//	}
-//}
+	for (iter = iter_left; iter != iter_right; iter++) {
+		if (left_index == list_left_size) {
+			*iter = *iter_list_right++;
+			right_index++;
+		} else if (right_index == list_right_size) {
+			*iter = *iter_list_left++;
+			left_index++;
+		} else if (*iter_list_left < *iter_list_right) {
+			*iter = *iter_list_left++;
+			left_index++;
+		} else {
+			*iter = *iter_list_right++;
+			right_index++;
+		}
+	}
+}
 
 void	PmergeMe::sortList(size_t left, size_t right)
 {
 	std::list<int>::iterator	iter_left = list.begin();
 	std::list<int>::iterator	iter_right = list.begin();
-	std::advance(iter_right, left);
+	std::advance(iter_left, left);
 	std::advance(iter_right, right);
-	size_t	mid = 0;
+	size_t	mid;
 
 	if (left >= right)
 		return ;
@@ -167,7 +160,7 @@ void	PmergeMe::sortList(size_t left, size_t right)
 		std::advance(iter_mid, mid);
 		sortList(left, mid);
 		sortList(mid, right);
-		sortMergeList(left, mid, right);
+		sortMergeList(iter_left, iter_mid, iter_right);
 	} else
 		sortInsertList(iter_left, iter_right);
 }
@@ -175,16 +168,21 @@ void	PmergeMe::sortList(size_t left, size_t right)
 void	PmergeMe::sort(void)
 {
 	std::vector<int>	vector_before(this->vector.begin(), this->vector.begin() + this->vector.size());
+	std::clock_t		time_start, time_end;
+	double				time_vector, time_list;
 
+	time_start = std::clock();
 	sortVector(0, vector.size());
+	time_end = std::clock();
+	time_vector = static_cast<double>(time_end - time_start) / CLOCKS_PER_SEC * 1000000;
+	time_start = std::clock();
 	sortList(0, list.size());
+	time_end = std::clock();
+	time_list = static_cast<double>(time_end - time_start) / CLOCKS_PER_SEC * 1000000;
 
-	for (std::list<int>::iterator iter = this->list.begin(); iter != this->list.end(); iter++)
-		std::cout << std::to_string(*iter) << " ";
-	std::cout << std::endl;
 	std::cout << "Before:\t" << getVectorStr(vector_before) << std::endl;
 	std::cout << "After:\t" << getVectorStr(vector) << std::endl;
 
-	std::cout << "Time to process a range of " << vector.size() << " elements with std::vector:\t" << "0.1" << " us" << std::endl;
-	std::cout << "Time to process a range of " << list.size() << " elements with std::list:\t" << "0.1" << " us" << std::endl;
+	std::cout << "Time to process a range of " << vector.size() << " elements with std::vector:\t" << time_vector << " us" << std::endl;
+	std::cout << "Time to process a range of " << list.size() << " elements with std::list:\t" << time_list << " us" << std::endl;
 }
