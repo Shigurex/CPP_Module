@@ -174,11 +174,11 @@ void	PmergeMe::sort(void)
 	time_start = std::clock();
 	sortVector(0, vector.size());
 	time_end = std::clock();
-	time_vector = static_cast<double>(time_end - time_start) / CLOCKS_PER_SEC * 1000000;
+	time_vector = static_cast<double>(time_end - time_start);
 	time_start = std::clock();
 	sortList(0, list.size());
 	time_end = std::clock();
-	time_list = static_cast<double>(time_end - time_start) / CLOCKS_PER_SEC * 1000000;
+	time_list = static_cast<double>(time_end - time_start);
 
 	std::cout << "Before:\t" << getVectorStr(vector_before) << std::endl;
 	std::cout << "After:\t" << getVectorStr(vector) << std::endl;

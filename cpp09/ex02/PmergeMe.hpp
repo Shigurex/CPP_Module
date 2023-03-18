@@ -27,7 +27,7 @@ public:
 	std::string	getVectorStr(std::vector<int> vector);
 	void		sort(void);
 
-	static const size_t	subarray_size = 2;
+	static const size_t	subarray_size = 40;
 };
 
 #endif
