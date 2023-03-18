@@ -183,6 +183,6 @@ void	PmergeMe::sort(void)
 	std::cout << "Before:\t" << getVectorStr(vector_before) << std::endl;
 	std::cout << "After:\t" << getVectorStr(vector) << std::endl;
 
-	std::cout << "Time to process a range of " << vector.size() << " elements with std::vector:\t" << time_vector << " us" << std::endl;
-	std::cout << "Time to process a range of " << list.size() << " elements with std::list:\t" << time_list << " us" << std::endl;
+	std::cout << "Time to process a range of " << vector.size() << " elements with std::vector : " << time_vector << " us" << std::endl;
+	std::cout << "Time to process a range of " << list.size() << " elements with std::list   : " << time_list << " us" << std::endl;
 }
